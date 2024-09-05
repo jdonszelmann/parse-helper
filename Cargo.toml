@@ -1,0 +1,15 @@
+[package]
+name = "parse-helper"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["icu", "std"]
+icu = ["dep:icu_properties", "alloc"]
+std = ["icu_properties/std", "alloc"]
+alloc = []
+
+[dependencies]
+icu_properties = {version = "1", features=[], optional=true}
