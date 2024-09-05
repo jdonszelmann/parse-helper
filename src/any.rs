@@ -129,9 +129,9 @@ impl<'a, T: ?Sized, B> ParseHelper<'a, T, B> {
     /// assert_eq!(ph.slice(start..end), "ab c")
     /// ```
     ///
-    /// Note that you can slice a [`Char`](Char) oriented parse helper only using exclusive ranges
-    /// (to not split utf8 codepoints accidentally), but [`Byte`](Byte) orieinted parse helpers can
-    /// be slices using these ranges. This property is encoded in a sealed trait called [`SliceRange`](private::SliceRange).
+    /// Note that you can slice a [`Char`](crate::Char) oriented parse helper only using exclusive ranges
+    /// (to not split utf8 codepoints accidentally), but [`Byte`] orieinted parse helpers can
+    /// be slices using these ranges. This property is encoded in a sealed trait called `SliceRange`.
     pub fn slice<R>(&self, range: R) -> &'a <T as Index<R::RangeTy>>::Output
     where
         R: private::SliceRange<'a, B, T>,
@@ -182,7 +182,7 @@ impl<'a, T: ?Sized, B> ParseHelper<'a, T, B> {
     /// This is also safer than [`slice_accepted`], because if None is returned, the parser resets
     /// to where it was before accepting anything
     ///
-    /// [`slice_accepted`]: Self::slice_accepted
+    /// [`slice_accepted`]: ParseHelper::slice_accepted
     ///
     /// ```
     /// use parse_helper::ParseHelper;

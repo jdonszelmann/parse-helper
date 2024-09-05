@@ -36,12 +36,12 @@ where
         }
     }
 
-    /// Turn this byte oriented parse helper into a [`StringParseHelper`],
+    /// Turn this byte oriented parse helper into a char-oriented parser,
     /// if it is currently at a utf8 boundary
-    /// (see [`skip_to_next_utf8_char_boundary`](Self::skip_to_next_utf8_char_boundary)).
+    /// (see [`skip_into_char_oriented`](Self::skip_into_char_oriented)).
     ///
     /// If not, returns `None`
-    pub fn into_utf8_oriented(self) -> Option<ParseHelper<'a, T, Char>> {
+    pub fn into_char_oriented(self) -> Option<ParseHelper<'a, T, Char>> {
         if !self.is_at_utf8_boundary() {
             None
         } else {
@@ -53,12 +53,12 @@ where
     /// Turn this parse helper that does not assume utf8 boundaries into one that does.
     ///
     /// If the parse helper is not currently at a utf8 boundary, it skips to the next boundary.
-    pub fn skip_into_utf8_oriented(mut self) -> ParseHelper<'a, T, Char> {
+    pub fn skip_into_char_oriented(mut self) -> ParseHelper<'a, T, Char> {
         self.skip_to_next_utf8_char_boundary();
 
         // Safety: we just skipped to the next boundary so we must be at one right now.
         // into_asume_utf8_boundary returns None only when we're not at a boundary.
-        unsafe { self.into_utf8_oriented().unwrap_unchecked() }
+        unsafe { self.into_char_oriented().unwrap_unchecked() }
     }
 }
 

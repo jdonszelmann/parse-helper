@@ -38,8 +38,8 @@ pub use boundary::{Byte, Char};
 /// simply `.clone()` a parser. However, if you want to make your intent clearer, 
 /// you might like [`backup`] and [`restore`]
 ///
-/// [`backup`]: Self::backup
-/// [`restore`]: Self::restore
+/// [`backup`]: ParseHelper::create_backup
+/// [`restore`]: ParseHelper::restore_backup
 /// 
 /// # Terminology
 ///
