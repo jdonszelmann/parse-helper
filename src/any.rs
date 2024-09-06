@@ -226,6 +226,13 @@ where
         self.bytes_left() == 0
     }
 
+    /// Returns how many bytes have been accepted sofar.
+    /// This is equivalent to getting the current "byte position", the counter that internally
+    /// keeps track of accepts
+    pub fn bytes_accepted(&self) -> usize {
+        self.byte_position
+    }
+
     /// Returns how many bytes are left to parse
     pub fn bytes_left(&self) -> usize {
         self.as_ref().len() - self.byte_position
