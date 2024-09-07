@@ -30,6 +30,7 @@ mod boundary;
 mod common;
 
 pub use boundary::{Byte, Char};
+pub use any::Mark;
 
 /// A wrapper around a bytes-like or string-like object that allows you to extract parts of it,
 /// maybe to help implement a parser.
