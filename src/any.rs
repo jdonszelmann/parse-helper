@@ -85,9 +85,17 @@ mod private {
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 #[repr(transparent)]
+/// Marks a position in an input stream.
 pub struct Mark<B> {
     byte_position: usize,
     boundary: PhantomData<B>,
+}
+
+impl<B> Mark<B> {
+    /// get the position in the input of this mark.
+    pub fn byte_position(&self) -> usize {
+        self.byte_position
+    }
 }
 
 impl<'a, T: ?Sized, B> ParseHelper<'a, T, B> {
